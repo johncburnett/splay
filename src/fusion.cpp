@@ -15,8 +15,8 @@ Fusion::Fusion(int _n){
     scanRate = 0;
     runScan = 0;
 
-    i0 = 0;
-    i1 = 1;
+    head = 0;
+    tail = 1;
 
     n = _n;
     w = h = std::sqrt(n/3);
@@ -113,13 +113,17 @@ void Fusion::addMesh(std::string path) {
     meshes.push_back(mesh);
 }
 
-void Fusion::setMesh0(int index) { i0 = index; }
-void Fusion::setMesh1(int index) { i1 = index; }
+void Fusion::setHead(int index) { head = index; }
+void Fusion::setTail(int index) { tail = index; }
 
 void Fusion::setInterp(float _interp) { interp = _interp; }
 void Fusion::setOpacity(float _opacity) { opacity = _opacity; }
 void Fusion::setScale(float _scale) { scale = _scale; }
 void Fusion::setDisplacement(float _displace) { displace = _displace; }
+
+int Fusion::getNumModels() {
+    return meshes.size();
+}
 
 void Fusion::setScanX(float width, float rate, int run) {
     runScan = run;
@@ -152,8 +156,8 @@ void Fusion::update(){
 }
 
 void Fusion::draw(){
-    Mesh *mesh0 = meshes[i0];
-    Mesh *mesh1 = meshes[i1];
+    Mesh *mesh0 = meshes[head];
+    Mesh *mesh1 = meshes[tail];
 
     shader.begin();
     shader.setUniformTexture("tex0", mesh0->pos.getTexture(), 0);

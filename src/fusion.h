@@ -20,8 +20,8 @@ public:
     void update();
     void draw();
 
-    void setMesh0(int index);
-    void setMesh1(int index);
+    void setHead(int index);
+    void setTail(int index);
     
     void setInterp(float);
     void setOpacity(float);
@@ -33,6 +33,8 @@ public:
     
     void setPos0(float, float, float);
     void setPos1(float, float, float);
+
+    int getNumModels();
     
     void setDof(ofPoint, ofPoint, float);
     
@@ -40,7 +42,7 @@ private:
     ofVboMesh vbo;
     std::vector<Mesh*> meshes;
     ofShader shader;
-    int i0, i1;
+    int head, tail;
     
     int n;
     int w, h;

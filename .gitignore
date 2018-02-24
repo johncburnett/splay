@@ -22,6 +22,8 @@ Builds/
 .DS_Store
 .*.swp
 .*.swo
+*.bkp
+.ycm_extra_conf.py
 
 ###
 # large files

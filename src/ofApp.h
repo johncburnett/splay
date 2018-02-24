@@ -13,8 +13,8 @@
 #define RES 1
 
 #if   RES == 0          // HD
-    #define WIDTH  800
-    #define HEIGHT 600
+    #define WIDTH  1920
+    #define HEIGHT 1080
 #elif RES == 1          // retina
     #define WIDTH  2880
     #define HEIGHT 1800
@@ -56,19 +56,22 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-    
-        void setupGUI(void);
-        void readMessages(void);
-		
+
     private:
         Fusion *fusion;
         ofFbo fbo;
         ofShader converge;
-        std::vector<string> paths;
+        int head, tail;
+    
+        ofxPostGlitch *glitch;
+
+        // audio
+        float rms, mod0, mod1;
     
         ofEasyCam cam;
         int frame_num;
     
+        // params
         ofxPanel gui;
         ofParameter<float> frame, opacity, displace;
         ofParameter<float> df, dDist;
@@ -86,11 +89,10 @@ class ofApp : public ofBaseApp{
         ofxButton reset;
         bool showGUI;
     
-        ofxPostGlitch *glitch;
+        void setupGUI();
+        void readMessages();
+        void swapModels();
 
-        // audio
-        float rms, mod0, mod1;
-    
         // save camera perspectives
         void camLoadPos(string);
         void camSavePos(string);

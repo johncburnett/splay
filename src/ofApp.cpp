@@ -1,7 +1,8 @@
 /*
  * TODO:
- * allocate and clear mesh loading during runtime
- * seperate thread for mesh allocation, can't stall gl routines
+ * allocate and clear mesh loading during runtime in thread
+ * update to GLSL to 330 
+ * integrate transform feedback
  */
 
 #include "ofApp.h"
@@ -28,19 +29,16 @@ void ofApp::setup(){
 
     fusion = new Fusion(NUM_PARTICLES);
     
-    // paths to models
-    string path0 = "/Users/john/Desktop/life/CS/Frameworks/openFrameworks_0.9.3/apps/myApps/blank/bin/data/models/man2.ply";
-    string path1 = "/Users/john/Desktop/life/CS/Frameworks/openFrameworks_0.9.3/apps/myApps/blank/bin/data/models/woman2.ply";
-    string path2 = "/Users/john/Desktop/life/CS/Frameworks/openFrameworks_0.9.3/apps/myApps/deformation_v2/bin/data/models/horse2.ply";
-
-    paths.push_back(path0);
-    paths.push_back(path1);
-    paths.push_back(path2);
+    // load models to fuse
+    ofDirectory dir("./models");
+    dir.listDir();
+    for(unsigned i = 0; i < dir.size(); i++){
+        string path = dir.getFile(i).getAbsolutePath();
+        fusion->addMesh(path);
+    }
     
-    // fuse models
-    fusion->addMesh(path0);
-    fusion->addMesh(path1);
-    fusion->addMesh(path2);
+    head = 0;
+    tail = 1;
     
     // shaders
     converge.load("shaders/convergence");
@@ -69,6 +67,10 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    if(frame >= 1000) {
+        swapModels();
+    }
+
     fusion->setInterp(frame * 0.001);
     fusion->setOpacity(opacity);
     fusion->setDisplacement(displace);
@@ -142,6 +144,20 @@ void ofApp::draw(void) {
     mainOutputSyphonServer.publishScreen();
     
     if(showGUI) gui.draw();
+}
+
+//--------------------------------------------------------------
+void ofApp::swapModels() {
+    for(unsigned i = 0; i < fusion->getNumModels(); ++i) {
+        if(i != head && i != tail) {
+            head = tail;
+            tail = i;
+            fusion->setHead(head);
+            fusion->setTail(tail);
+            frame = 0;
+            break;
+        }
+    }
 }
 
 //--------------------------------------------------------------
@@ -303,9 +319,6 @@ void ofApp::keyPressed(int key) {
     if (key == '8') glitch->setFx(OFXPOSTGLITCH_CR_BLUERAISE,   true);
     if (key == '9') glitch->setFx(OFXPOSTGLITCH_CR_REDRAISE,    true);
     if (key == '0') glitch->setFx(OFXPOSTGLITCH_INVERT,         true);
-    
-    if (key == '5') fusion->setMesh1(1);
-    if (key == '6') fusion->setMesh1(2);
 }
 
 //--------------------------------------------------------------
