@@ -30,7 +30,11 @@ Fusion::Fusion(int _n){
     }
     vbo.setMode(OF_PRIMITIVE_POINTS);
 
+#if GLSL330
+    shader.load("shaders/draw330");
+#else
     shader.load("shaders/draw");
+#endif
 }
 
 Fusion::~Fusion() {}

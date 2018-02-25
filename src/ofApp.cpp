@@ -3,6 +3,7 @@
  * allocate and clear mesh loading during runtime in thread
  * update to GLSL to 330 
  * integrate transform feedback
+ * automate camera movement
  */
 
 #include "ofApp.h"
@@ -21,13 +22,9 @@ void ofApp::setup(){
     dx = dy = dz = 0;
     camX = camY = camZ = 0;
     rms = mod0 = mod1 = 0;
-    
-    glitch = new ofxPostGlitch();
-    
-    // OSC
-    receive.setup(PORT);
 
     fusion = new Fusion(NUM_PARTICLES);
+    head = 0; tail = 1;
     
     // load models to fuse
     ofDirectory dir("./models");
@@ -37,15 +34,15 @@ void ofApp::setup(){
         fusion->addMesh(path);
     }
     
-    head = 0;
-    tail = 1;
-    
     // shaders
-    converge.load("shaders/convergence");
+    //converge.load("shaders/convergence");
     
     // GUI
     setupGUI();
    
+    // OSC
+    receive.setup(PORT);
+
     // syphon
     mainOutputSyphonServer.setName("Screen Output");
     mClient.setup();
@@ -59,7 +56,6 @@ void ofApp::setup(){
     s.wrapModeVertical  = GL_MIRRORED_REPEAT_ARB;
     s.wrapModeHorizontal= GL_MIRRORED_REPEAT_ARB;
     fbo.allocate(s);
-    glitch->setup(&fbo);
     
     if(OSC == 0) camLoadPos("camPos0");
     cam.setNearClip(0);
@@ -114,15 +110,14 @@ void ofApp::draw(void) {
     
     fbo.end();
     
-    //glitch->generateFx();
-    converge.begin();
-    converge.setUniformTexture("tex0", fbo, 0);
-    converge.setUniform3f("pos", pos);
-    converge.setUniform1f("offsetX", offsetX);
-    converge.setUniform1f("offsetY", offsetY);
-    ofClear(0, 0, 0, 1);
+    //converge.begin();
+    //converge.setUniformTexture("tex0", fbo, 0);
+    //converge.setUniform3f("pos", pos);
+    //converge.setUniform1f("offsetX", offsetX);
+    //converge.setUniform1f("offsetY", offsetY);
+    //ofClear(0, 0, 0, 1);
     fbo.draw(0, 0);
-    converge.end();
+    //converge.end();
     
     if(record) {
         ofPixels pix;
@@ -222,24 +217,6 @@ void ofApp::readMessages(void) {
         if (address == "/rms"){ rms = m.getArgAsFloat(0); displace = rms*10; }
         if (address == "/mod0"){ mod0 = m.getArgAsFloat(0); frame = mod0; }
         if (address == "/mod1"){ mod1 = m.getArgAsFloat(0); }
-
-        if (address == "/converge"){
-            float val = m.getArgAsFloat(0);
-            if(val > 0.5) glitch->setFx(OFXPOSTGLITCH_CONVERGENCE, true);
-            else glitch->setFx(OFXPOSTGLITCH_CONVERGENCE, false);
-        }
-
-        if (address == "/shaker"){
-            float val = m.getArgAsFloat(0);
-            if(val > 0.5) glitch->setFx(OFXPOSTGLITCH_SHAKER, true);
-            else glitch->setFx(OFXPOSTGLITCH_SHAKER, false);
-        }
-
-        if (address == "/cutslider"){
-            float val = m.getArgAsFloat(0);
-            if(val > 0.5) glitch->setFx(OFXPOSTGLITCH_CUTSLIDER, true);
-            else glitch->setFx(OFXPOSTGLITCH_CUTSLIDER, false);
-        }
     }
 }
 
@@ -310,30 +287,10 @@ void ofApp::keyPressed(int key) {
         frame_num++;
         if ((frame_num % 100) == 0) sleep(10);
     }
-    
-    if (key == '1') glitch->setFx(OFXPOSTGLITCH_CONVERGENCE,    true);
-    if (key == '2') glitch->setFx(OFXPOSTGLITCH_SHAKER,         true);
-    if (key == '3') glitch->setFx(OFXPOSTGLITCH_CUTSLIDER,      true);
-    if (key == '4') glitch->setFx(OFXPOSTGLITCH_NOISE,          true);
-    
-    if (key == '8') glitch->setFx(OFXPOSTGLITCH_CR_BLUERAISE,   true);
-    if (key == '9') glitch->setFx(OFXPOSTGLITCH_CR_REDRAISE,    true);
-    if (key == '0') glitch->setFx(OFXPOSTGLITCH_INVERT,         true);
 }
 
 //--------------------------------------------------------------
-void ofApp::keyReleased(int key){
-    if (key == '1') glitch->setFx(OFXPOSTGLITCH_CONVERGENCE,    false);
-    if (key == '2') glitch->setFx(OFXPOSTGLITCH_SHAKER,         false);
-    if (key == '3') glitch->setFx(OFXPOSTGLITCH_CUTSLIDER,      false);
-    if (key == '4') glitch->setFx(OFXPOSTGLITCH_NOISE,          false);
-    
-    if (key == '8') glitch->setFx(OFXPOSTGLITCH_CR_BLUERAISE,   false);
-    if (key == '9') glitch->setFx(OFXPOSTGLITCH_CR_REDRAISE,    false);
-    if (key == '0') glitch->setFx(OFXPOSTGLITCH_INVERT,         false);
-}
-
-//--------------------------------------------------------------
+void ofApp::keyReleased(int key){ }
 void ofApp::mouseMoved(int x, int y ){ }
 void ofApp::mouseDragged(int x, int y, int button){ }
 void ofApp::mousePressed(int x, int y, int button){ }

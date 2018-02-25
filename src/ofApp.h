@@ -8,7 +8,6 @@
 #include "ofxGui.h"
 #include "ofxOsc.h"
 #include "ofxSyphon.h"
-#include "ofxPostGlitch.h"
 
 #define RES 1
 
@@ -63,8 +62,6 @@ class ofApp : public ofBaseApp{
         ofShader converge;
         int head, tail;
     
-        ofxPostGlitch *glitch;
-
         // audio
         float rms, mod0, mod1;
     
