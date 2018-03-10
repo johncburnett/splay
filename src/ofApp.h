@@ -9,7 +9,7 @@
 #include "ofxOsc.h"
 #include "ofxSyphon.h"
 
-#define RES 1
+#define RES 0
 
 #if   RES == 0          // HD
     #define WIDTH  1920
@@ -34,8 +34,9 @@
 #define FRAMERATE 30
 #define NUM_PARTICLES 7700000
 
-#define OSC 0
-#define PORT 12345
+#define OSC 1
+#define SYPHON 0
+#define PORT 7771
 
 class ofApp : public ofBaseApp{
 
@@ -63,7 +64,7 @@ class ofApp : public ofBaseApp{
         int head, tail;
     
         // audio
-        float rms, mod0, mod1;
+        float rms, mod0, mod1, rs;
     
         ofEasyCam cam;
         int frame_num;
@@ -86,6 +87,7 @@ class ofApp : public ofBaseApp{
         ofxButton reset;
         bool showGUI;
     
+        // utilities
         void setupGUI();
         void readMessages();
         void swapModels();
@@ -96,8 +98,10 @@ class ofApp : public ofBaseApp{
         ofMatrix4x4 defaultPosition;
     
         // Syphon
+#if SYPHON
         ofxSyphonServer mainOutputSyphonServer;
         ofxSyphonClient mClient;
+#endif
     
         // OSC
         ofxOscReceiver receive;

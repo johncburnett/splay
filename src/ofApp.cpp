@@ -15,13 +15,14 @@ void ofApp::setup(){
     
     frame = 0;
     df = 0;
-    opacity = 0.2;
+    opacity = 0.1;
     run = false;
     showGUI = false;
     frame_num = 0;
     dx = dy = dz = 0;
     camX = camY = camZ = 0;
     rms = mod0 = mod1 = 0;
+    rs = 1;
 
     fusion = new Fusion(NUM_PARTICLES);
     head = 0; tail = 1;
@@ -35,7 +36,7 @@ void ofApp::setup(){
     }
     
     // shaders
-    //converge.load("shaders/convergence");
+    converge.load("shaders/convergence");
     
     // GUI
     setupGUI();
@@ -44,9 +45,11 @@ void ofApp::setup(){
     receive.setup(PORT);
 
     // syphon
+#if SYPHON
     mainOutputSyphonServer.setName("Screen Output");
     mClient.setup();
     mClient.set("","Simple Server");
+#endif
 
     ofFbo::Settings s;
     s.width             = ofGetWidth();
@@ -63,9 +66,10 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    if(frame >= 1000) {
-        swapModels();
-    }
+//    if(frame >= 1000) {
+//        swapModels();
+//        frame = 0;
+//    }
 
     fusion->setInterp(frame * 0.001);
     fusion->setOpacity(opacity);
@@ -73,10 +77,8 @@ void ofApp::update(){
     
     fusion->setPos0(dx, dy, dz);
     fusion->setPos1(-1*dx, -1*dy, -1*dz);
-    
 //    fusion->setScanX(scanWidth, scanRate, runScan);
     fusion->setScanY(scanHeight, scanRate, runScan);
-    
     fusion->setDof(dofCam, dofCenter, bell);
     
     fusion->update();
@@ -95,29 +97,27 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(void) {
     fbo.begin();
-    ofEnableSmoothing();
-    ofClear(0,0,0,255);
-    
-    ofEnableAlphaBlending();
-    ofEnableBlendMode(OF_BLENDMODE_ADD);
-    
-    // render
-    cam.begin();
-    fusion->draw();
-    cam.end();
-    
-    ofDisableAlphaBlending();
-    
+        ofEnableSmoothing();
+        ofClear(0,0,0,255);
+        ofEnableAlphaBlending();
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
+        
+        // render
+        cam.begin();
+            fusion->draw();
+        cam.end();
+        
+        ofDisableAlphaBlending();
     fbo.end();
     
-    //converge.begin();
-    //converge.setUniformTexture("tex0", fbo, 0);
-    //converge.setUniform3f("pos", pos);
-    //converge.setUniform1f("offsetX", offsetX);
-    //converge.setUniform1f("offsetY", offsetY);
-    //ofClear(0, 0, 0, 1);
-    fbo.draw(0, 0);
-    //converge.end();
+    // glitch
+    converge.begin();
+        converge.setUniformTexture("tex0", fbo, 0);
+        converge.setUniform3f("pos", mod0, mod0, mod0);
+        converge.setUniform1f("rand", (rms+0.01)*3);
+        ofClear(0, 0, 0, 1);
+        fbo.draw(0, 0);
+    converge.end();
     
     if(record) {
         ofPixels pix;
@@ -135,8 +135,10 @@ void ofApp::draw(void) {
     }
     
     // syphon
+#if SYPHON
     mClient.draw(50, 50);
     mainOutputSyphonServer.publishScreen();
+#endif
     
     if(showGUI) gui.draw();
 }
@@ -149,7 +151,6 @@ void ofApp::swapModels() {
             tail = i;
             fusion->setHead(head);
             fusion->setTail(tail);
-            frame = 0;
             break;
         }
     }
@@ -214,9 +215,13 @@ void ofApp::readMessages(void) {
         if (address == "/scanHeight"){ scanHeight = m.getArgAsFloat(0); }
         if (address == "/scanRate"){ scanRate = m.getArgAsFloat(0); }
 
-        if (address == "/rms"){ rms = m.getArgAsFloat(0); displace = rms*10; }
-        if (address == "/mod0"){ mod0 = m.getArgAsFloat(0); frame = mod0; }
+        if (address == "/rms"){ rms = m.getArgAsFloat(0); }
+        if (address == "/mod0"){ mod0 = m.getArgAsFloat(0); }
         if (address == "/mod1"){ mod1 = m.getArgAsFloat(0); }
+        if (address == "/rs"){ rs = m.getArgAsFloat(0); }
+        
+        if (address == "/swap"){ swapModels(); }
+        if (address == "/opacity"){ opacity = m.getArgAsFloat(0); }
     }
 }
 

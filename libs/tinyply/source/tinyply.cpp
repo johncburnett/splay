@@ -243,31 +243,31 @@ void PlyFile::write_binary_internal(std::ostream & os)
 
 void PlyFile::write_ascii_internal(std::ostream & os)
 {
-    //write_header(os);
+    write_header(os);
     
-    //for (auto & e : elements)
-    //{
-        //for (size_t i = 0; i < e.size; ++i)
-        //{
-            //for (auto & p : e.properties)
-            //{
-                //auto & cursor = userDataTable[make_key(e.name, p.name)];
-                //if (p.isList)
-                //{
-                    //os << p.listCount << " ";
-                    //for (int j = 0; j < p.listCount; ++j)
-                    //{
-                        //write_property_ascii(p.propertyType, os, (cursor->data + cursor->offset), cursor->offset);
-                    //}
-                //}
-                //else
-                //{
-                    //write_property_ascii(p.propertyType, os, (cursor->data + cursor->offset), cursor->offset);
-                //}
-            //}
-            //os << std::endl;
-        //}
-    //}
+    for (auto & e : elements)
+    {
+        for (size_t i = 0; i < e.size; ++i)
+        {
+            for (auto & p : e.properties)
+            {
+                auto & cursor = userDataTable[make_key(e.name, p.name)];
+                if (p.isList)
+                {
+                    os << p.listCount << " ";
+                    for (int j = 0; j < p.listCount; ++j)
+                    {
+                        write_property_ascii(p.propertyType, os, (cursor->data + cursor->offset), cursor->offset);
+                    }
+                }
+                else
+                {
+                    write_property_ascii(p.propertyType, os, (cursor->data + cursor->offset), cursor->offset);
+                }
+            }
+            os << std::endl;
+        }
+    }
 }
 
 void PlyFile::write_header(std::ostream & os)

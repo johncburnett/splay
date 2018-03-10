@@ -119,41 +119,10 @@
 		5283BD952012EE9100614C80 /* woman2.ply */ = {isa = PBXFileReference; lastKnownFileType = file; path = woman2.ply; sourceTree = "<group>"; };
 		5283BD972012EE9100614C80 /* convergence.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = convergence.frag; sourceTree = "<group>"; };
 		5283BD982012EE9100614C80 /* convergence.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = convergence.vert; sourceTree = "<group>"; };
-		5283BD992012EE9100614C80 /* crBlueinvert.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = crBlueinvert.frag; sourceTree = "<group>"; };
-		5283BD9A2012EE9100614C80 /* crBlueinvert.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = crBlueinvert.vert; sourceTree = "<group>"; };
-		5283BD9B2012EE9100614C80 /* crBlueraise.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = crBlueraise.frag; sourceTree = "<group>"; };
-		5283BD9C2012EE9100614C80 /* crBlueraise.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = crBlueraise.vert; sourceTree = "<group>"; };
-		5283BD9D2012EE9100614C80 /* crGreeninvert.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = crGreeninvert.frag; sourceTree = "<group>"; };
-		5283BD9E2012EE9100614C80 /* crGreeninvert.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = crGreeninvert.vert; sourceTree = "<group>"; };
-		5283BD9F2012EE9100614C80 /* crGreenraise.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = crGreenraise.frag; sourceTree = "<group>"; };
-		5283BDA02012EE9100614C80 /* crGreenraise.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = crGreenraise.vert; sourceTree = "<group>"; };
-		5283BDA12012EE9100614C80 /* crHighContrast.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = crHighContrast.frag; sourceTree = "<group>"; };
-		5283BDA22012EE9100614C80 /* crHighContrast.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = crHighContrast.vert; sourceTree = "<group>"; };
-		5283BDA32012EE9100614C80 /* crRedinvert.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = crRedinvert.frag; sourceTree = "<group>"; };
-		5283BDA42012EE9100614C80 /* crRedinvert.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = crRedinvert.vert; sourceTree = "<group>"; };
-		5283BDA52012EE9100614C80 /* crRedraise.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = crRedraise.frag; sourceTree = "<group>"; };
-		5283BDA62012EE9100614C80 /* crRedraise.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = crRedraise.vert; sourceTree = "<group>"; };
-		5283BDA72012EE9100614C80 /* cut_slider.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = cut_slider.frag; sourceTree = "<group>"; };
-		5283BDA82012EE9100614C80 /* cut_slider.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = cut_slider.vert; sourceTree = "<group>"; };
 		5283BDA92012EE9100614C80 /* draw.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = draw.frag; sourceTree = "<group>"; };
 		5283BDAA2012EE9100614C80 /* draw.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = draw.vert; sourceTree = "<group>"; };
-		5283BDAB2012EE9100614C80 /* glow.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = glow.frag; sourceTree = "<group>"; };
-		5283BDAC2012EE9100614C80 /* glow.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = glow.vert; sourceTree = "<group>"; };
-		5283BDAD2012EE9100614C80 /* invert.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = invert.frag; sourceTree = "<group>"; };
-		5283BDAE2012EE9100614C80 /* invert.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = invert.vert; sourceTree = "<group>"; };
 		5283BDAF2012EE9100614C80 /* noise.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = noise.frag; sourceTree = "<group>"; };
 		5283BDB02012EE9100614C80 /* noise.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = noise.glsl; sourceTree = "<group>"; };
-		5283BDB12012EE9100614C80 /* noise.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = noise.vert; sourceTree = "<group>"; };
-		5283BDB22012EE9100614C80 /* outline.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = outline.frag; sourceTree = "<group>"; };
-		5283BDB32012EE9100614C80 /* outline.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = outline.vert; sourceTree = "<group>"; };
-		5283BDB42012EE9100614C80 /* shaker.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shaker.frag; sourceTree = "<group>"; };
-		5283BDB52012EE9100614C80 /* shaker.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shaker.vert; sourceTree = "<group>"; };
-		5283BDB62012EE9100614C80 /* slitscan.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = slitscan.frag; sourceTree = "<group>"; };
-		5283BDB72012EE9100614C80 /* slitscan.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = slitscan.vert; sourceTree = "<group>"; };
-		5283BDB82012EE9100614C80 /* swell.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = swell.frag; sourceTree = "<group>"; };
-		5283BDB92012EE9100614C80 /* swell.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = swell.vert; sourceTree = "<group>"; };
-		5283BDBA2012EE9100614C80 /* twist.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = twist.frag; sourceTree = "<group>"; };
-		5283BDBB2012EE9100614C80 /* twist.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = twist.vert; sourceTree = "<group>"; };
 		5283BDBC2012EE9100614C80 /* util.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = util.glsl; sourceTree = "<group>"; };
 		5283BDBD2012EE9100614C80 /* deformation.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = deformation.app; sourceTree = "<group>"; };
 		52AFA1F08C420992CAAAE648 /* ofxSlider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSlider.h; path = ../../../addons/ofxGui/src/ofxSlider.h; sourceTree = SOURCE_ROOT; };
@@ -383,41 +352,10 @@
 			children = (
 				5283BD972012EE9100614C80 /* convergence.frag */,
 				5283BD982012EE9100614C80 /* convergence.vert */,
-				5283BD992012EE9100614C80 /* crBlueinvert.frag */,
-				5283BD9A2012EE9100614C80 /* crBlueinvert.vert */,
-				5283BD9B2012EE9100614C80 /* crBlueraise.frag */,
-				5283BD9C2012EE9100614C80 /* crBlueraise.vert */,
-				5283BD9D2012EE9100614C80 /* crGreeninvert.frag */,
-				5283BD9E2012EE9100614C80 /* crGreeninvert.vert */,
-				5283BD9F2012EE9100614C80 /* crGreenraise.frag */,
-				5283BDA02012EE9100614C80 /* crGreenraise.vert */,
-				5283BDA12012EE9100614C80 /* crHighContrast.frag */,
-				5283BDA22012EE9100614C80 /* crHighContrast.vert */,
-				5283BDA32012EE9100614C80 /* crRedinvert.frag */,
-				5283BDA42012EE9100614C80 /* crRedinvert.vert */,
-				5283BDA52012EE9100614C80 /* crRedraise.frag */,
-				5283BDA62012EE9100614C80 /* crRedraise.vert */,
-				5283BDA72012EE9100614C80 /* cut_slider.frag */,
-				5283BDA82012EE9100614C80 /* cut_slider.vert */,
 				5283BDA92012EE9100614C80 /* draw.frag */,
 				5283BDAA2012EE9100614C80 /* draw.vert */,
-				5283BDAB2012EE9100614C80 /* glow.frag */,
-				5283BDAC2012EE9100614C80 /* glow.vert */,
-				5283BDAD2012EE9100614C80 /* invert.frag */,
-				5283BDAE2012EE9100614C80 /* invert.vert */,
 				5283BDAF2012EE9100614C80 /* noise.frag */,
 				5283BDB02012EE9100614C80 /* noise.glsl */,
-				5283BDB12012EE9100614C80 /* noise.vert */,
-				5283BDB22012EE9100614C80 /* outline.frag */,
-				5283BDB32012EE9100614C80 /* outline.vert */,
-				5283BDB42012EE9100614C80 /* shaker.frag */,
-				5283BDB52012EE9100614C80 /* shaker.vert */,
-				5283BDB62012EE9100614C80 /* slitscan.frag */,
-				5283BDB72012EE9100614C80 /* slitscan.vert */,
-				5283BDB82012EE9100614C80 /* swell.frag */,
-				5283BDB92012EE9100614C80 /* swell.vert */,
-				5283BDBA2012EE9100614C80 /* twist.frag */,
-				5283BDBB2012EE9100614C80 /* twist.vert */,
 				5283BDBC2012EE9100614C80 /* util.glsl */,
 			);
 			path = shaders;
