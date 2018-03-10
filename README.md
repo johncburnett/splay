@@ -3,5 +3,5 @@
 ```
 $ xcodebuild
 $ make RunRelease
-$ sclang splay.scd
+$ sclang supercollider/splay.scd
 ```

@@ -6,6 +6,8 @@ build/
 Builds/
 *.app
 *.mlp
+*.wav
+*.aiff
 
 ###
 # xcode garbage
